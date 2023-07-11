@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding:20px;
+  }
+  
+  .inputField {
+    flex: 1;
+    margin-right: 16px;
+  }
+  
+  .button {
+    flex-shrink: 0;
+  }
+  

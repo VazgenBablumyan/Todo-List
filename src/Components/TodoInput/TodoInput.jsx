@@ -1,11 +1,31 @@
 import { Button, TextField } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
+import styles from '../TodoInput/TodoInput.module.css'
+
+const initialState={
+  inputValue:''
+}
+function reducer(state,action){
+if(action.type==="inputChange"){
+  return { ...state,
+     inputValue: action.payload };
+}else if(action.type==="add"){
+  return { ...state, inputValue: '' };
+}else {
+  return state
+}
+}
 
 export default function TodoInput({todos, setTodos}) {
-    const [inputValue, setInputValue] = useState('');
+  useReducer(reducer);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { inputValue } = state;
     const handleInputChange = (event) => {
-      setInputValue(event.target.value);
+     dispatch({
+      type:"inputChange",
+      payload:event.target.value,
+     })
     };
 
     const handleAddTodo = () => {
@@ -17,19 +37,25 @@ export default function TodoInput({todos, setTodos}) {
         };
   
         setTodos([...todos, newTodo]);
-        setInputValue('');
+        dispatch({
+        type:"add"
+      })
       }
     };
   
     return (
-      <div>
+      <div className={styles.container}>
         <TextField
+         className={styles.inputField}
           label="Enter a new todo"
           variant="outlined"
           value={inputValue}
           onChange={handleInputChange}
         />
-        <Button variant="contained" color="primary" onClick={handleAddTodo}>
+        <Button className={styles.button}
+         variant="contained" 
+         color="primary" 
+         onClick={handleAddTodo}>
           Add Todo
         </Button>
       </div>
