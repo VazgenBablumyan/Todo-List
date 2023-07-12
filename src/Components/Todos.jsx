@@ -1,25 +1,24 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import Todolist from './TodoList/Todolist';
 import TodoInput from './TodoInput/TodoInput';
 import TodoFooter from './TodoFooter/TodoFooter';
 import styles from './Todo.module.css'
 import { reducer } from './Reducer';
 
-const getItem = JSON.parse(localStorage.getItem("TODOS"))
-function setItem(todos=[]){
-if (getItem){
-localStorage.setItem("TODOS",JSON.stringify(todos))
-  return []
-}
-localStorage.setItem("TODOS",JSON.stringify(getItem))
- return getItem
-}
+const setStorage = (todos) => localStorage.setItem("TODOS",JSON.stringify(todos))
+const getStorage = () => JSON.parse(localStorage.getItem("TODOS"))
+
 
 
 export default function Todos() {
-const [todos, dispatch] = useReducer(reducer, setItem())
+const [todos, dispatch] = useReducer(reducer, getStorage() ?? [] )
+
+useEffect(() => {
+  setStorage(todos)
+},[todos])
 
 function handleAddTask(text){
+  
   dispatch({type:"add to list",text})
 }
 function handleCheck(newTodo){
