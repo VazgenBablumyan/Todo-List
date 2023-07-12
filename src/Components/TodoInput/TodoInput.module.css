@@ -1,0 +1,15 @@
+.inputForm{
+    width: 500px;
+    height:56px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.inputText{
+    width: 415px;
+}
+.inputButton{
+    width:100px;
+    height: 56px;
+}

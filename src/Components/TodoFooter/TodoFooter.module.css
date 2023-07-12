@@ -1,0 +1,20 @@
+.footer{
+    background-color: hsl(207, 11%, 85%);
+width: 500px;
+display: flex;
+height: 56px;
+margin-top: 5px;
+
+justify-content: space-between;
+}
+.text{
+    margin-top:5px;
+    color: black;
+    font-size:  30px;
+    margin-left: 22px;
+}
+.button{
+    width: 100px;
+    position: relative;
+    right: 0;
+}

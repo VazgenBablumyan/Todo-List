@@ -1,0 +1,19 @@
+.todoLists{
+    height: 56px;
+    width:500px;
+    background-color: rgba(220, 220, 220, 0.863)
+}
+.list{
+    margin: 5px;
+}
+.check{
+    margin:0;
+}
+.text{
+    width: 400px;
+    color: black;
+    font-size: 30px;
+}
+.deleteList{
+width: 95px;
+}

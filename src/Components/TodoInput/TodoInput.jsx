@@ -1,37 +1,35 @@
 import { Button, TextField } from '@mui/material';
-import { v4 as uuidv4 } from 'uuid';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import styles from './TodoInput.module.css'
 
-export default function TodoInput({todos, setTodos}) {
-    const [inputValue, setInputValue] = useState('');
-    const handleInputChange = (event) => {
-      setInputValue(event.target.value);
-    };
+export default function TodoInput({handleAddTask}) {
+  const [inputValue, setInputValue] = useState("")
 
-    const handleAddTodo = () => {
-      if (inputValue.trim() !== '') {
-        const newTodo = {
-          id: uuidv4(),
-          name: inputValue,
-          isCompleted: false,
-        };
-  
-        setTodos([...todos, newTodo]);
-        setInputValue('');
-      }
-    };
   
     return (
-      <div>
+      <form className={styles.inputForm}
+        onSubmit={(e) => {
+          e.preventDefault()
+          if(inputValue.trim() !== ""){
+          handleAddTask(inputValue)
+        }
+          setInputValue("")
+      }}
+          >
         <TextField
           label="Enter a new todo"
           variant="outlined"
-          value={inputValue}
-          onChange={handleInputChange}
+          value = {inputValue}
+          className={styles.inputText}
+          onChange = {(e)=> setInputValue(e.target.value)}
         />
-        <Button variant="contained" color="primary" onClick={handleAddTodo}>
+        <Button variant="contained" 
+          color="primary"
+          type="submit"
+          className={styles.inputButton} 
+          >
           Add Todo
         </Button>
-      </div>
+      </form>
     );
   }
