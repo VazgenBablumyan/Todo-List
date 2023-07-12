@@ -1,28 +1,26 @@
 import { Checkbox, ListItem } from '@mui/material'
 import React from 'react'
 import Button from '@mui/material/Button';
+import styles from "./Todolist.module.css"
 
-export default function Todolist({ todos, setTodos }) {
+export default function Todolist({todos, handleCheck, handleDelete}) {
 
-   console.log(todos)
     return todos.map((todo) => {
         return (
-            <div>
-                <ListItem id={todo.id}>
+            <div key={todo.id} className={styles.todoLists}>
+                <ListItem  className={styles.list}>
                     <Checkbox 
+                        className={styles.check}
                         checked={todo.isCompleted} 
-                        onClick={()=>{
-                            setTodos(
-                                [...todos],
-                                todo.isCompleted = !todo.isCompleted
-                            )
-                        }} />
-                    <span>{todo.name}</span>
+                        onChange={(e) => {
+                            handleCheck({...todo, isCompleted:e.target.checked})
+                        }}/>
+                    <span className={styles.text}>{todo.name}</span>
                     <Button 
+                        className={styles.deleteList}
                         variant="outlined" 
-                        onClick={()=> {
-                        setTodos(todos.filter((e) => todo.id !== e.id))
-                    }}> Delete
+                        onClick={() => handleDelete(todo.id)}
+                    > Delete
                     </Button>
                 </ListItem>
             </div>
