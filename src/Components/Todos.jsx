@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
+import Todolist from './TodoList/Todolist';
+import TodoInput from './TodoInput/TodoInput';
+import TodoFooter from './TodoFooter/TodoFooter';
 
-export default function Todo() {
+
+export default function Todos() {
+
     const [todos, setTodos] = useState([])
   return (
     <div>
-        <TodoInput  todos ={todos} setTodo={setTodos}/>
-        <TodoList  todos ={todos} setTodo={setTodos}/>
-        <TodoFooter  todos ={todos} setTodo={setTodos}/>
+        <TodoInput  todos ={todos} setTodos={setTodos}/>
+        <Todolist todos ={todos} setTodos={setTodos}/>
+        <TodoFooter  todos ={todos} setTodos={setTodos}/>
     </div>
   )
 }
